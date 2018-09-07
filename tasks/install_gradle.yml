@@ -1,0 +1,21 @@
+- name: Prepare gradle directory
+  file:
+    path: /opt/gradle
+    state: directory
+
+- name: Download gradle
+  get_url:
+    url: "https://services.gradle.org/distributions/gradle-{{ gradle_version }}-bin.zip"
+    dest: "/opt/gradle/gradle-{{ gradle_version }}-bin.zip"
+
+- name: unzip gradle
+  unarchive:
+    src: "/opt/gradle/gradle-{{ gradle_version }}-bin.zip"
+    dest: /opt/gradle
+    remote_src: true
+
+- name: symlink gradle
+  file:
+    path: /usr/local/bin/gradle
+    src: "/opt/gradle/gradle-{{ gradle_version }}/bin/gradle"
+    state: link
