@@ -1,13 +1,13 @@
 ---
 
-- name: Ensure Android SDK tools directory exists
-  file: path={{ android_sdk_install_location }} state=directory
-
 - name: Check if Android SDK tools are installed
   stat:
     path: "{{ android_sdk_install_location }}"
   register: sdk_install_location_path
   changed_when: false
+
+- name: Ensure Android SDK tools directory exists
+  file: path={{ android_sdk_install_location }} state=directory
 
 - name: Download Android SDK tools
   get_url: url={{ android_sdk_download_location }} dest={{ android_sdk_install_location }}/sdk-download.tgz
