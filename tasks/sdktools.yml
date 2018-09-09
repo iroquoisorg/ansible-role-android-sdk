@@ -2,7 +2,7 @@
 
 - name: Check if Android SDK tools are installed
   stat:
-    path: "{{ android_sdk_install_location }}"
+    path: "{{ android_sdk_install_location }}/android-sdk-linux"
   register: sdk_install_location_path
   changed_when: false
 
